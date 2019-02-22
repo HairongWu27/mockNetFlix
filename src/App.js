@@ -1,28 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {connect} from 'react-redux'
 import './App.css';
+import {moveListToRecommendation, moveRecommendationToList} from './store.js'
+import MovieList from './MovieList.js'
+import List from './List'
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    render() {
+        return (
+          <div className="app">
+            <MovieList header={"Movie List"} list={this.props.list} 
+            ClickHandler={this.props.moveListToRem} button={"remove"}/>
+            <MovieList header={"Recommendations"} list={this.props.recommendation} 
+            ClickHandler={this.props.moveRemToList}  button={"add"}/>
+            <List header={"My List"} list={this.props.list}/>
+          </div>
+        )
+    }
 }
 
-export default App;
+
+const mapStateToProps = state => {
+    return {
+        list: state.mylist,
+        recommendation: state.recommendations,
+    }
+};
+  
+function mapDispatchToProps(dispatch) {
+      return({
+        moveListToRem: (item) => {dispatch(moveListToRecommendation(item))},
+        moveRemToList: (item) => {dispatch(moveRecommendationToList(item))},
+      })
+};
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
+  
