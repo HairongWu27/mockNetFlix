@@ -1,7 +1,13 @@
 .app {
   margin: 30px 50px;
+  padding-left: 30px;
+  background-color: black;
 }
-
+.logo{
+  width: 100px;
+  height: 65px;
+  background-color: black;
+}
 .movies{
   display: flex;
   
@@ -13,7 +19,12 @@
 .movieItem:hover button{
   visibility:visible;
 }
-
+button.testing{
+  background-color: yellow;
+  width: 200px;
+  height: 250px;
+  color:white;
+}
 button {
   visibility:hidden;
   position: relative;
@@ -25,5 +36,7 @@ button {
 .title {
   text-align:center;
 }
-
+h3,h2,div.title, li{
+  color:white;
+}
 
